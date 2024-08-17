@@ -1,6 +1,5 @@
 package main
 
-// app name is genix
 import (
 	"errors"
 	"fmt"
@@ -49,7 +48,7 @@ func Split(file string, Dump string, amount int) {
 	if err != nil {
 		log("** problem ", err)
 	} else {
-		// data Display just for data can be removed afterwards
+		// data Display can be removed afterwards
 		var chunk_size_byte int = len(data) / amount
 		log(FileName, ":", float64(len(data))/kb, "kb")
 		log("split amount:", amount, ", each:", float64(chunk_size_byte), "byte")
@@ -63,10 +62,6 @@ func Split(file string, Dump string, amount int) {
 			chunks = append(chunks, data[i:end])
 		}
 		for i, chunk := range chunks {
-			// ext, err := GetFileExtension(FileName)
-			// if err != nil {
-			// log("problmen in getting the file extension", err)
-			// }
 			name_elements := []string{fmt.Sprintf("%d", i), "[genix]"}
 			filename_rander := strings.Join(name_elements, "")
 			filename := filepath.Join(file_house, filename_rander)
@@ -77,9 +72,7 @@ func Split(file string, Dump string, amount int) {
 				return
 			}
 			fmt.Println("Written:", filename)
-			// paths = append(paths, filename)
 		}
-		// log(paths)
 	}
 }
 func GetFileName(filePath string) string {
@@ -142,9 +135,3 @@ func Merge(folder string, dump string, ext string) {
 		log("worked i guess ? ")
 	}
 }
-
-// [
-// 	Ranked_filed:1file,2fiel,3file,4file
-// 	Orge_file_name:"something",
-// 	Orge_file_size:102129
-// ]
